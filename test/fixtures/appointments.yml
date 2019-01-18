@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vehicle_make: MyString
+  vehicle_model: MyString
+  appointment_time: 2019-01-12
+  booked_time: 2019-01-12 17:10:28
+  status: MyString
+
+two:
+  vehicle_make: MyString
+  vehicle_model: MyString
+  appointment_time: 2019-01-12
+  booked_time: 2019-01-12 17:10:28
+  status: MyString

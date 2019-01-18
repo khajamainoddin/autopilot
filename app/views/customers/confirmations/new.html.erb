@@ -1,0 +1,29 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui image header">
+      <div class="content">
+       Resend confirmation instructions
+      </div>
+    </h2>
+
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, class: "ui large form") do |f| %>
+  <%= devise_error_messages! %>
+<div class="ui stacked secondary  segment">
+  <div class="ui tiny form">
+  
+    <div class="field">
+      <div class="ui left input">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: "Email" %>
+  </div>
+</div>
+ 
+
+  <div class="ui fluid large teal submit">
+    <%= f.submit "Resend confirmation instructions", class: "ui basic grey button" %>
+    <%= link_to "Cancel", authenticated_root_path, class: "ui black button" %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>
+</div>

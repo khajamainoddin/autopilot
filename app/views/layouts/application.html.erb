@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestPilot</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="//use.typekit.net/jxz0pda.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+  
+    <%if current_user%>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid" id="nav-contain">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <img src="<%#= current_user.image_url %>" width="30" id="prof_pic"/>
+      </button>
+      
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li class="active"><%= link_to "Hi #{current_user.first_name.titleize}", appointments_path(current_user) %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if policy(Driver).create? %>
+         <li class="item"><%= link_to 'Create Driver', new_driver_registration_path %></li>
+         <% end %>
+         <li role="separator" class="divider"></li>
+        <li class="item"><%= link_to 'Book Appointment', new_appointment_path(current_user) %></li>
+         <li> <%= link_to "Settings", edit_user_registration_path(current_user) %></li>
+        <li role="separator" class="divider"></li>
+        <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<% else %>
+  
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid" id="nav-contain">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <img src="<%#= current_user.image_url %>" width="30" id="prof_pic"/>
+      </button>
+      
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+      <ul class="nav navbar-nav navbar-right">
+      <li class="right"><%= link_to "Sign Up", new_user_registration_path, class: "glyphicon glyphicon-button" %></li>
+      <li class="right"><%= link_to "Login", new_user_session_path, class: "glyphicon glyphicon-button" %></li>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<% end %>
+
+<div class="container-fluid yield">
+ <% if flash[:notice] %>
+      <div class="alert alert-info alert-dismissible" role="alert"><%= flash[:notice]%>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+<% end %>
+
+
+<%= yield %>
+</div>
+<% if current_user %>
+  <nav class="visible-xs navbar navbar-default navbar-fixed-bottom">
+
+      <div role="presentation" class="col-xs-4 text-center" id="tab">
+        <%= link_to "", new_appointment_path(current_user), class: "glyphicon glyphicon-calendar" %>
+      </div>      
+      <div role="presentation" class="col-xs-4 text-center" id="tab">
+        <%= link_to "", user_session_path(current_user), class: "glyphicon glyphicon-home" %>
+      </div>
+
+
+  </nav>
+
+<% end %>
+
+  </body>
+</html>

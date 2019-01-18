@@ -1,0 +1,56 @@
+
+<h1>Appointments</h1>
+
+<hr />
+<table class="ui celled table selectable striped padded">
+  <thead>
+    <tr>
+      <% if policy(Appointment).show? %>
+      <th class="center aligned">Customer Name</th>
+      <% end %>
+      <th class="center aligned">Vehicle Make</th>
+      <th class="center aligned">Vehicle Model</th>
+      <th class="center aligned">Schedule Date</th>
+      <th class="center aligned">Booked Time</th>
+      <th class="center aligned">Status</th>
+       <% if policy(Appointment).show? && @appointments.driver.present? %>
+      <th class="center aligned">Driver Name</th>
+      <% end %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <% if policy(Appointment).show? %>
+        <td><%= appointment.user.first_name %>
+          <% end %>
+        
+        <td><%= appointment.vehicle_make %></td>
+        <td><%= appointment.vehicle_model %></td>
+        <td><%= appointment.schedule %></td>
+        <td><%= appointment.booked.strftime("%l:%M %p") %></td>
+        <td><%= appointment.status %></td>
+        <% if appointment.driver.present? && policy(Appointment).show? %>
+        <td><%= appointment.driver.first_name %></td>
+        <% elsif  policy(Appointment).show? %>
+         <td><% nil %></td> 
+         <% end %>
+          <% if policy(Appointment).show? %>
+        <td><%= link_to 'Allocate', customers_allocate_path, {class: 'ui violet button'} %></td>
+        <% end %>
+        <!-- 
+        <%# if policy(Appointment).edit? %>
+        <td><%#= link_to 'Edit', edit_appointment_path(appointment), {class: 'ui orange button'} %></td>
+        <% #end %>
+      -->
+
+        <td><%= link_to 'Cancel', appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui button red inverted' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

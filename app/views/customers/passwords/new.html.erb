@@ -1,0 +1,30 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui image header">
+      <div class="content">
+       Forgot your password?
+      </div>
+    </h2>
+
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, class: "ui large form") do |f| %>
+  <%= devise_error_messages! %>
+
+<div class="ui stacked secondary  segment">
+  <div class="ui tiny form">
+  
+    <div class="field">
+      <div class="ui left input">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+  </div>
+</div>
+  <div class="ui fluid large teal submit">
+    <%= f.submit "Send me reset password instructions", class: "ui basic grey button" %>
+    <%= link_to "Cancel", authenticated_root_path, class: "ui black button" %>
+  </div>
+<% end %>
+</div>
+</div>
+
+</div>
+</div>

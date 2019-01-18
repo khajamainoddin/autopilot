@@ -1,0 +1,49 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+
+<h1 class="ui image header">
+      <div class="content">
+       Vehicle Details
+      </div>
+ </h1>
+
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <div class="ui stacked secondary  segment">
+
+      <span class="content">
+
+        <strong>Vehicle make:</strong>
+        <%= @appointment.vehicle_make %>
+      </span>
+      <br />
+      <span class="content">
+        <strong>Vehicle model:</strong>
+        <%= @appointment.vehicle_model %>
+      </span>
+    <br />
+      <span class="content">
+        <strong>Schedule Date:</strong>
+        <%= @appointment.schedule %>
+      </span>
+      <br />
+      <!--
+<p>
+  <strong>Booked time:</strong>
+  <%#= @appointment.booked %>
+</p>
+-->
+     <div class="content">
+        <strong>Status:</strong>
+        <%= @appointment.status %>
+      </div>
+      <br />
+      <div class="ui fluid large teal submit">
+        <%= link_to 'Back', appointments_path,  class: 'ui black button' %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

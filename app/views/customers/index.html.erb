@@ -1,0 +1,5 @@
+<% @customers = Customer.all %>
+<% @customers.each do |customer| %>
+  <%= customer.first_name %><br/>
+  <%= customer.email %><br/>
+<% end %>

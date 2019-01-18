@@ -1,0 +1,63 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+
+<%= form_with(model: appointment, class: "ui large form", local: true) do |form| %>
+  <% if appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="ui stacked secondary  segment">
+  <div class="ui small form">
+  <div class="fields">
+    <div class="field">
+      <div class="ul left input">
+    
+    <%= form.select :vehicle_make, ['Car', 'Bike', 'Other']%>
+  </div>
+</div>
+
+
+  <div class="field">
+   <div class="ul left input">
+    <%= form.select :vehicle_model, ["Skoda", "Swift"] %>
+  </div>
+</div>
+</div>
+
+
+    <div class="field">
+   <div class="ul left input">
+    <%= form.date_field :schedule, as: :date, value: form.object.try(:strftime,"%Y %m %d %H:%M:%S"), placeholder: "Schedule Time" %>
+  </div>
+  </div>
+
+  <div class="field">
+
+
+    <%= form.time_field :booked, as: :time, ampm: true %>
+</div>
+
+<% if policy(Appointment).show? %>
+<div class="field">
+
+ <%= form.select :driver_id, Driver.all.collect {|a| [a.first_name, a.id] } %>
+</div>
+<% end %>
+  <div class="ui fluid large teal submit">
+    <%= form.submit "Book Appointmnent", class: 'ui blue button', type: "submit" %>
+    <%= link_to 'Back', appointments_path,  class: 'ui black button' %>
+
+  </div>
+</div>
+
+<% end %>
+</div>
+</div>
+</div>

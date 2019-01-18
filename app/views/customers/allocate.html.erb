@@ -1,0 +1,39 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+
+  
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <div class="ui stacked secondary  segment">
+<%= form_with(model: [appointment_url, user], class: "ui large form", local: true) do |form| %>
+      <span class="content">
+
+        <strong>Vehicle make:</strong>
+        <%= @appointment.vehicle_make %>
+      </span>
+      <br />
+      <span class="content">
+        <strong>Vehicle model:</strong>
+        <%= appointment.vehicle_model %>
+      </span>
+    <br />
+      <span class="content">
+        <strong>Schedule Date:</strong>
+        <%= appointment.schedule %>
+      </span>
+      <br />
+
+<div class="field">
+ <%#= form.select :driver_id, Driver.all.collect {|a| [a.first_name, a.id] } %>
+</div>
+  <div class="ui fluid large teal submit">
+    <%#= form.submit "Book Appointmnent", class: 'ui blue button', type: "submit" %>
+    <%#= link_to 'Back', appointments_path,  class: 'ui black button' %>
+
+  </div>
+</div>
+<% end %>
+</div>
+</div>
+</div>
+

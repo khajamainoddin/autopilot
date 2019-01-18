@@ -1,0 +1,5 @@
+<% @drivers = Driver.all %>
+<% @drivers.each do |driver| %>
+  <%= driver.first_name %><br/>
+  <%= driver.email %><br/>
+<% end %>

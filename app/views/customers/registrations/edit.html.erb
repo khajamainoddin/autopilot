@@ -1,0 +1,91 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui image header">
+      <div class="content">
+        Edit <%= resource_name.to_s.humanize %>
+      </div>
+    </h2>
+
+<% resource.build_user_address if resource.user_address.nil? %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class: "ui large form") do |f| %>
+  <%= devise_error_messages! %>
+
+<div class="ui stacked secondary  segment">
+  <div class="ui tiny form">
+  <div class="fields">
+    <div class="field">
+      <div class="ui left input">
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "firstname", placeholder: "First Name" %>
+  </div>
+  </div>
+
+
+  <div class="field">
+    <div class="ui left input">
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "lastname", placeholder: "Last Name" %>
+    </div>
+  </div>
+</div>
+
+ <div class="fields">
+  <div class="field">
+    <div class="ui left input">
+    <%= f.text_field :phone_number, placeholder: "Phone Number" %>
+  </div>
+</div>
+
+      <%= f.fields_for :user_address do |address_fields| %>
+      <div class="field">
+        <div class="ui left input">
+        <%= address_fields.text_field :address_line1, placeholder: "Address Line1" %>
+      </div>
+</div>
+</div>
+
+      <div class="fields">
+      <div class="field">
+        <div class="ui left input">
+        <%= address_fields.text_field :address_line2, placeholder: "Address Line2" %>
+      </div>
+    </div>
+
+      <div class="field">
+        <div class="ui left input">
+        <%= address_fields.text_field :city, placeholder: "City" %>
+      </div>
+      </div>
+      </div>
+      
+     <div class="fields">
+      <div class="field">
+        <div class="ui left input">
+        <%= address_fields.text_field :state, placeholder: "State" %>
+      </div>
+    </div>
+
+      <div class="field">
+        <div class="ui left input">
+        <%= address_fields.text_field :country, placeholder: "Country" %>
+      </div>
+    </div>
+  </div>
+
+    <div class="fields">
+      <div class="field">
+        <div class="ui left input">
+       
+        <%= address_fields.text_field :zipcode, placeholder: "Zipcode" %>
+      </div>
+    </div>
+  </div>
+      <% end %>
+
+  <div class="ui fluid large teal submit">
+    <%= f.submit "Update Customer", class: "ui blue button" %>
+    <%= link_to "Cancel", appointments_path, class: "ui black button" %>
+  </div>
+<% end %>
+
+</div>
+</div>
+</div>
